@@ -56,6 +56,8 @@ def handle():
     jinja_env = get_jinja_env(config_folder=args.config_folder)
     template_vars = get_environment_values("ALTITUDE")
     template_vars = listify(template_vars, "ALTITUDE_ADMIN_UUIDS")
+    template_vars = listify(template_vars, "ALTITUDE_MAP_LIST")
+    template_vars = listify(template_vars, "ALTITUDE_MAP_ROTATION")
 
     template = jinja_env.get_template(args.config_file)
     outpath = Path(args.output_file)
