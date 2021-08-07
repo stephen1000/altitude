@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  altitude:
+    # Enable to run from dockerhub
+    # image: stephen1000/altitude
+    
+    # Enable to build your own image from this repo
+    image: altitude
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: ./data
+        target: /data
+    ports:
+      - target: 27275
+        published: 27275
+        protocol: udp
+        mode: host
+      - target: 27276
+        published: 27276
+        protocol: udp
+        mode: host
+      - target: 27277
+        published: 27277
+        protocol: udp
+        mode: host
+    env_file: server_settings.env

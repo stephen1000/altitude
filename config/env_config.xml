@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ServerLauncherConfig ip="" upnpEnabled="true" updatePort="{{ ALTITUDE_UPDATE_PORT or 27275 }}">
+  <servers>
+    <AltitudeServerConfig port="{{ ALTITUDE_PORT or 27276 }}" downloadMaxKilobytesPerSecond="40" downloadHttpSource="" serverName="{{ ALTITUDE_SERVER_NAME or 'Altitude Server' }}" maxPlayerCount="{{ ALTITUDE_MAX_PLAYER_COUNT or 14 }}" hardcore="{{ ALTITUDE_HARDCORE or 'true'}}" autoBalanceTeams="{{ ALTITUDE_AUTO_BALANCE_TEAMS or 'true' }}" preventTeamSwitching="{{ ALTITUDE_PREVENT_TEAM_SWITCHING or 'false' }}" disableBalanceTeamsPopup="{{ ALTITUDE_DISABLE_BALANCE_POPUP or 'false' }}" lanServer="{{ ALTITUDE_LAN_SERVER or 'false' }}" callEndOfRoundVote="{{ ALTITUDE_CALL_END_OF_ROUND_VOTE or 'true' }}" disallowDemoUsers="false" rconEnabled="{{ ALTITUDE_ENABLE_RCON or 'false' }}" rconPassword="{{ ALTITUDE_RCON_PASSWORD or 'false' }}" maxPing="{{ ALTITUDE_MAX_PING or 350}}" minLevel="{{ ALTITUDE_MIN_LEVEL or 0}}" maxLevel="{{ ALTITUDE_MAX_LEVEL or 0}}" secretCode="{{ ALTITUDE_SECRET_CODE }}" cameraViewScalePercent="{{ ALTITUDE_CAMERA_SCALE_PERCENT or 100}}">
+      <adminsByVaporID>
+        {% for uuid in ALTITUDE_ADMIN_UUIDS -%}
+            <UUID UUID="{{ uuid }}" />
+        {% endfor -%}
+      </adminsByVaporID>
+      <mapList>
+        {% for map in ALTITUDE_MAP_LIST or ['ball', 'ffa', 'tbd', 'tdm'] -%}
+            <String value="|{{map}}|" />
+        {% endfor -%}
+      </mapList>
+      <mapRotationList>
+        {% for map in ALTITUDE_MAP_ROTATION or ['ball', 'ffa', 'tbd', 'tdm'] -%}
+            <String value="|{{map}}|" />
+        {% endfor -%}
+      </mapRotationList>
+      <BotConfig numberOfBots="{{ ALTITUDE_BOT_COUNT or 2}}" botDifficulty="{{ ALTITUDE_BOT_DIFFICULTY or 'MEDIUM'}}" botsBalanceTeams="{{ ALTITUDE_BOTS_BALANCE_TEAMS or 'true'}}" botSpectateThreshold="6" />
+      <disallowedPlaneRandomTypes />
+      <FreeForAllGameMode scoreLimit="{{ ALTITUDE_FFA_SCORE or 0 }}" RoundLimit="{{ ALTITUDE_FFA_ROUNDS or 1}}" roundTimeSeconds="{{ ALTITUDE_FFA_ROUND_TIME or 420}}" warmupTimeSeconds="{{ ALTITUDE_FFA_WARMUP or 10 }}" />
+      <BaseDestroyGameMode RoundLimit="{{ ALTITUDE_TBD_ROUNDS or 1}}" roundTimeSeconds="{{ ALTITUDE_TBD_TIME or 0}}" warmupTimeSeconds="{{ ALTITUDE_TBD_WARMUP or 10}}" />
+      <ObjectiveGameMode gamesPerRound="{{ ALTITUDE_OBJ_GAMES or 9}}" gamesPerSwitchSides="{{ ALTITUDE_OBJ_PER_SWITCH or 2}}" gameWinMargin="{{ ALTITUDE_OBJ_MARGIN or 1}}" betweenGameTimeSeconds="{{ ALTITUDE_OBJ_BETWEEN_GAMES or 6}}" RoundLimit="{{ ALTITUDE_OBJ_ROUNDS or 1}}" roundTimeSeconds="{{ ALTITUDE_OBJ_ROUND_TIME or 0}}" warmupTimeSeconds="{{ ALTITUDE_OBJ_WARMUP or 10}}" />
+      <PlaneBallGameMode goalsPerRound="{{ ALTITUDE_BALL_GOALS or 11}}" RoundLimit="{{ ALTITUDE_BALL_ROUNDS or 1}}" roundTimeSeconds="{{ ALTITUDE_BALL_ROUND_TIME or 0}}" warmupTimeSeconds="{{ ALTITUDE_BALL_WARMUP or 10}}" />
+      <TeamDeathmatchGameMode scoreLimit="{{ ALTITUDE_TDM_SCORE or 0}}" RoundLimit="{{ ALTITUDE_TDM_ROUNDS or 1}}" roundTimeSeconds="{{ ALTITUDE_TDM_ROUND_TIME or 600}}" warmupTimeSeconds="{{ ALTITUDE_TDM_WARMUP or 10}}" />
+      <customCommands />
+      <consoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="balanceTeams">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Vote" />
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="changeMap">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Vote" />
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="custom">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Vote" />
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="drop">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="kick">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Vote" />
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="startTournament">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="stopTournament">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Vote" />
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="addBan">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="addChatBlock">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="assignTeam">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="ban">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="castBallot">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+            <AltitudeConsoleGroup Group="Anonymous" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="chatBlock">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="listBans">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="listChatBlocks">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="listMaps">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+            <AltitudeConsoleGroup Group="Anonymous" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="listPlayers">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+            <AltitudeConsoleGroup Group="Anonymous" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="logPlanePositions">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="logServerStatus">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="modifyTournament">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="nextMap">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+            <AltitudeConsoleGroup Group="Anonymous" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="overrideBallScore">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="overrideSpawnPoint">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="rconPassword">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+            <AltitudeConsoleGroup Group="Anonymous" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="removeBan">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="removeChatBlock">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="serverMessage">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="serverRequestPlayerChangeServer">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="serverWhisper">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="testCameraViewScale">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="testDisableWeaponMode">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="testDS">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="testEM">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="testGravityMode">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="testHealthModifier">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="testPlaneScale">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+        <AltitudeServerConsoleCommandPermissions ConsoleCommand="vote">
+          <AllowedGroups>
+            <AltitudeConsoleGroup Group="Administrator" />
+            <AltitudeConsoleGroup Group="Anonymous" />
+          </AllowedGroups>
+        </AltitudeServerConsoleCommandPermissions>
+      </consoleCommandPermissions>
+    </AltitudeServerConfig>
+  </servers>
+</ServerLauncherConfig>
